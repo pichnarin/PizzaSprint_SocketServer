@@ -31,12 +31,12 @@ app.post('/recieve-order', (rep, res) => {
 
 //listen the /order-status endpoint fron laravel
 app.put('/order-status', (rep, res) => {
-  const { order_id, order_number, status } = rep.body;
+  const { order_id, order_number, status , driver_lat, driver_long} = rep.body;
 
   //debug purpose
   console.log('Order status updated:', rep.body);
 
-  io.emit('order-status-updated', { order_id, order_number, status });
+  io.emit('order-status-updated', { order_id, driver_lat, driver_long, order_number, status });
 
   res.status(200).send('Notification sent to client.');
 })
